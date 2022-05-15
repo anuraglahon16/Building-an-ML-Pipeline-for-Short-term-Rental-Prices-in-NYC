@@ -33,6 +33,10 @@ def go(args):
     df = df[idx].copy()
     # Convert last_review to datetime
     df['last_review'] = pd.to_datetime(df['last_review'])
+    
+    #for the fail case
+    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    df = df[idx].copy()
 
     logger.info("Saving the output artifact")
     file_name = "clean_sample.csv"
@@ -57,43 +61,43 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--input_artifact", 
-        type=str,## INSERT TYPE HERE: str, float or int,
-        help='Input artifact',## INSERT DESCRIPTION HERE,
+        type=str,
+        help='Input artifact',
         required=True
     )
 
     parser.add_argument(
         "--output_artifact", 
-        type=str,## INSERT TYPE HERE: str, float or int,
-        help='Output artifact',## INSERT DESCRIPTION HERE,
+        type=str,
+        help='Output artifact',
         required=True
     )
 
     parser.add_argument(
         "--output_type", 
-        type=str,## INSERT TYPE HERE: str, float or int,
-        help='Output type',## INSERT DESCRIPTION HERE,
+        type=str,
+        help='Output type',
         required=True
     )
 
     parser.add_argument(
         "--output_description", 
-        type=str,## INSERT TYPE HERE: str, float or int,
-        help='Output description',## INSERT DESCRIPTION HERE,
+        type=str,
+        help='Output description',
         required=True
     )
 
     parser.add_argument(
         "--min_price", 
-        type=float, ##INSERT TYPE HERE: str, float or int,
-        help='Min price',## INSERT DESCRIPTION HERE,
+        type=float, 
+        help='Min price',
         required=True
     )
 
     parser.add_argument(
         "--max_price", 
-        type=float,## INSERT TYPE HERE: str, float or int,
-        help='Max price',## INSERT DESCRIPTION HERE,
+        type=float,
+        help='Max price',
         required=True
     )
 
